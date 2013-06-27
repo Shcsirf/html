@@ -1,0 +1,24 @@
+h1{
+	COLOR: #FF9933;
+	text-align: center;
+	font-style: italic;
+}
+li{
+	Color: #2E9AFE;
+	font-size: 16px;
+	font-weight: bold;
+	font-family: "Comic Sans MS", sans-serif;
+}
+body{
+	background-color: #990000; 
+	COLOR: #FFFFCC;
+	margin-left: 20%;
+	margin-right: 20%;
+	border: 2px dashed #FF9933;
+	padding: 10px 10px 10px 10px;
+	font-family: sans-serif;
+	font-size: 14px;
+}
+a{
+	color: #CCFFFF;
+}
