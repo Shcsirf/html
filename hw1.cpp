@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
 int bf(string s, string p){
@@ -12,5 +13,22 @@ int bf(string s, string p){
 		if(j==m){
 			return i;}
 	}
-	return void;
+	return 0;
 }
+
+vector<int> compute_MP_map(string p){
+	m = p.length();
+	vector<int> MP_map = [-1]*(m+1);
+	i=0;
+	j = MP_map[i];
+	while(i<m){
+		while((j>=0) and (p[i] != p[j])){
+			j=MP_map[j];
+		}
+		j = j+1;
+		i = i+1;
+		MP_map[i]=j;
+	}
+	return MP_map;
+}
+
