@@ -1,4 +1,7 @@
 #include <iostream>
+#include <algorithm>
+#include <ctime>
+#include <cstdlib>
 #include <fstream>
 #include <vector>
 
@@ -10,10 +13,12 @@ using std::cin;
 using std::cerr;
 
 int main(){
-	string input, algo, file1, file2;
+	string input, algo, file1, file2, line;
+	//vector<string> contents1, contents2;
 	ifstream ifs1, ifs2;
 	cout << "Please enter slow or fast followed by a space, your first ";
-	cout << "file followed by a space, then your second file. Example:" << endl;
+	cout << "file followed by a space, then your second file." << endl;
+	cout << "Example:" << endl;
 	cout << "slow file1 file2" << endl;
 	while(getline(cin, input)){
 		if(input == "exit"){
@@ -41,7 +46,12 @@ int main(){
 			cerr << "Error: Are you sure you're using the correct format?" << endl;
 			continue;
 		}
-		
+		else{
+			while(getline(ifs1, line)){
+				cout << line << endl;
+			}		
+			cout << line << endl;
+			}
 	}
 	
 	return 0;
