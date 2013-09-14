@@ -1,0 +1,11 @@
+laptop
+phone
+tv
+anna
+chairs
+window
+brick
+column
+outlet
+carpet
+pandora
