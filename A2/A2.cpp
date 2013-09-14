@@ -11,24 +11,58 @@ using std::endl;
 using std::ifstream;
 using std::cin;
 using std::cerr;
+using std::vector;
+
+vector<string> storeContent(string x){
+	vector<string> contents;
+	string line;
+	ifstream ifs;
+	ifs.open(x.c_str());
+	if(ifs.fail()){
+		cerr << "Error: Are you sure you're using the correct format?" << endl;
+		cout << x << " failed to open." << endl;
+		vector<string> failed;
+		failed.push_back ("failed");
+		return failed;
+	}
+	else{
+		while(getline(ifs, line)){
+			contents.push_back (line);
+		}
+	}
+	return contents;
+}
+
+void printVector(vector<string> vec){
+	for(int i=0; i<vec.size(); i++){
+		cout << vec.at(i) << " " << endl;
+	}
+}
 
 int main(){
-	string input, algo, file1, file2, line;
-	//vector<string> contents1, contents2;
+	string input, algo, file1, file2;
+	vector<string> contents1, contents2;
 	ifstream ifs1, ifs2;
-	cout << "Please enter slow or fast followed by a space, your first ";
+	cout << endl << "Please enter slow or fast followed by a space, your first ";
 	cout << "file followed by a space, then your second file." << endl;
 	cout << "Example:" << endl;
-	cout << "slow file1 file2" << endl;
+	cout << "slow file1 file2" << endl << endl;
 	while(getline(cin, input)){
 		if(input == "exit"){
 			break;
 		}
 		int spaceCounter = 0;
+		bool error = false;
 		for(int i=0; i<input.length(); i++){
 			if(input.at(i) == ' '){
 				spaceCounter++;
 				i++;
+			}
+			if(input.at(i) == ' '){
+				cerr << "Error: Please make sure you are using the correct format"
+					<< endl;
+				error = true;
+				break;
 			}
 			if(spaceCounter == 1){
 				file1 += input.at(i);
@@ -40,18 +74,25 @@ int main(){
 				algo += input.at(i);
 			}
 		}	
-		ifs1.open(file1.c_str());
-		ifs2.open(file2.c_str());
-		if(ifs1.fail() || ifs2.fail()){
-			cerr << "Error: Are you sure you're using the correct format?" << endl;
+		if(error){
 			continue;
 		}
-		else{
-			while(getline(ifs1, line)){
-				cout << line << endl;
-			}		
-			cout << line << endl;
-			}
+		contents1 = storeContent(file1);
+		contents2 = storeContent(file2);
+		if((contents1[0] == "failed") || (contents2[0] == "failed")){
+			input = "";
+			algo = "";
+			file1 = "";
+			file2 = "";
+			continue;
+		}
+		printVector(contents2);
+		printVector(contents1);
+
+		input = "";
+		algo = "";
+		file1 = "";
+		file2 = "";
 	}
 	
 	return 0;
